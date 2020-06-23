@@ -438,13 +438,13 @@ DQ
             <objects>
                 <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="hkr-Nx-kQu" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="TNC Information" identifier="" image="icons8-info" id="y0I-4p-Bzi"/>
-                        <tabViewItem label="Audio Input" identifier="" image="icons8-microphone" id="bOx-Q2-2rb"/>
-                        <tabViewItem label="Audio Output" image="icons8-speaker" id="d4V-k4-4ON"/>
-                        <tabViewItem label="Power Settings" identifier="canBatteryLevel" image="icons8-battery-level" id="9qQ-hG-NSk"/>
-                        <tabViewItem label="KISS Parameters" image="icons8-tune" id="pJq-6a-bNE"/>
-                        <tabViewItem label="Modem Settings" image="icons8-rs-232-male" id="Jj4-t8-4uJ"/>
-                        <tabViewItem label="Update Firmware" image="icons8-software-installer" id="6cu-6H-scO"/>
+                        <tabViewItem label="TNC Information" identifier="tabTNCInfo" image="icons8-info" id="y0I-4p-Bzi"/>
+                        <tabViewItem label="Audio Input" identifier="tabAudioInput" image="icons8-microphone" id="bOx-Q2-2rb"/>
+                        <tabViewItem label="Audio Output" identifier="tabAudioOutput" image="icons8-speaker" id="d4V-k4-4ON"/>
+                        <tabViewItem label="Power Settings" identifier="tabPowerSettings" image="icons8-battery-level" id="9qQ-hG-NSk"/>
+                        <tabViewItem label="KISS Parameters" identifier="tabKissParams" image="icons8-tune" id="pJq-6a-bNE"/>
+                        <tabViewItem label="Modem Settings" identifier="tabModem" image="icons8-rs-232-male" id="Jj4-t8-4uJ"/>
+                        <tabViewItem label="Update Firmware" identifier="tabUpdateFirmware" image="icons8-software-installer" id="6cu-6H-scO"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="6vv-WD-96s">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>

@@ -29,6 +29,8 @@ class MainViewController: NSViewController {
     
     @objc dynamic weak var connection: MobilinkdTncConnection!
     
+    var tabViewItems = [NSTabViewItem]()
+    
     weak var tabViewController: NSTabViewController?
     
     override func awakeFromNib() {
@@ -51,7 +53,7 @@ class MainViewController: NSViewController {
         connection.addObserver(self, forKeyPath: "dynamicStatus", options:[.old, .new], context: nil)
         connection.addObserver(self, forKeyPath: "canBatteryLevel", options: [.old, .new], context: nil)
         connection.addObserver(self, forKeyPath: "canDeviceFirmwareUpdate", options: [.old, .new], context: nil)
-
+        
     }
     
     override func viewWillDisappear() {
@@ -87,38 +89,55 @@ class MainViewController: NSViewController {
         switch keyPath {
         case "selectedObjects":
             self.onDeviceDidChange()
-
+            
         case "dynamicStatus":
             self.handleConnectionStatusChange()
             
         case "canBatteryLevel":
-            print("canBatteryLevel \(self.connection.canBatteryLevel)")
-            if self.tblConfigSections.numberOfRows > 1 {
-
-                tblConfigSections.beginUpdates()
-                if self.connection.canBatteryLevel {
-                   self.tblConfigSections.unhideRows(at: IndexSet([3]), withAnimation: [])
-                } else {
-                    self.tblConfigSections.hideRows(at: IndexSet([3]), withAnimation: [])
-                }
-                tblConfigSections.endUpdates()
-            }
+            self.updateConfigSections()
             
         case "canDeviceFirmwareUpdate":
-            if self.tblConfigSections.numberOfRows == 7 {
-
-                if self.connection.canDeviceFirmwareUpdate {
-                    self.tblConfigSections.unhideRows(at: IndexSet([6]), withAnimation: [])
-                } else {
-                    self.tblConfigSections.hideRows(at: IndexSet([6]), withAnimation: [])
-                }
-            }
+            self.updateConfigSections()
             
         default:
             break
         }
     }
     
+    func updateConfigSections() {
+        
+        guard let allItems = tabViewController?.tabViewItems else {
+            return
+        }
+        
+        tabViewItems.removeAll()
+        
+        if connection.connected {
+            for item in allItems {
+                
+                if let identifier = item.identifier as? String {
+                    switch identifier {
+                    case "tabPowerSettings":
+                        if !connection.canBatteryLevel {
+                            continue
+                        }
+                        
+                    case "tabUpdateFirmware":
+                        if !connection.canDeviceFirmwareUpdate {
+                            continue
+                        }
+                        
+                    default:
+                        break
+                    }
+                }
+                tabViewItems.append(item)
+            }
+        }
+        
+        tblConfigSections.reloadData()
+        
+    }
     
     func onDeviceDidChange() {
         
@@ -152,19 +171,19 @@ class MainViewController: NSViewController {
             spinConnectProgress.stopAnimation(self)
             btnConnect.isEnabled = true
             btnConnect.title = "Disconnect"
-            tblConfigSections.reloadData()
-
+            updateConfigSections()
+            
         case .stopping:
             spinConnectProgress.startAnimation(self)
             btnConnect.isEnabled = false
-
+            
         case .stopped:
             spinConnectProgress.stopAnimation(self)
             btnConnect.title = "Connect"
             btnConnect.isEnabled = true
-            tblConfigSections.reloadData()
+            updateConfigSections()
             tabViewController?.selectedTabViewItemIndex = 0
-
+            
         case .error:
             spinConnectProgress.stopAnimation(self)
             
@@ -173,7 +192,7 @@ class MainViewController: NSViewController {
         }
         
     }
-
+    
     
     @IBAction func toggleConnect(_ sender: NSButton) {
         
@@ -233,6 +252,11 @@ extension MainViewController : NSTableViewDelegate {
             return nil
         }
         
+        guard let identifier = tabItem.identifier as? String else {
+            return nil
+        }
+        
+        tableCellView.identifier = NSUserInterfaceItemIdentifier(rawValue: identifier)
         tableCellView.textField?.stringValue = tabItem.label
         tableCellView.imageView?.image = tabItem.image
         
@@ -240,7 +264,18 @@ extension MainViewController : NSTableViewDelegate {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        tabViewController?.selectedTabViewItemIndex = tblConfigSections.selectedRow
+        
+        let selectedTab = tabViewItems[tblConfigSections.selectedRow]
+        
+        if let tabIndex = tabViewController?.tabViewItems.firstIndex(where: { (item) -> Bool in
+            guard let id1 = item.identifier as? String, let id2 = selectedTab.identifier as? String else {
+                return false
+            }
+            return id1 == id2
+        }) {
+            tabViewController?.selectedTabViewItemIndex = tabIndex
+        }
+        
     }
     
     
@@ -250,24 +285,13 @@ extension MainViewController : NSTableViewDelegate {
 extension MainViewController : NSTableViewDataSource {
     
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        
-        guard let tabViewItems = tabViewController?.tabViewItems else {
+        guard row < tabViewItems.count else {
             return nil
         }
-        
         return tabViewItems[row]
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        
-        guard let tabViewItems = tabViewController?.tabViewItems else {
-            return 0
-        }
-        
-        if !connection.connected {
-            return 0
-        }
-        
         return tabViewItems.count
     }
     
