@@ -1,0 +1,527 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD8FA321249D252E0060168F /* BatteryLevelValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FA320249D252E0060168F /* BatteryLevelValueTransformer.swift */; };
+		AD8FA32B249D2AAB0060168F /* UnitFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FA32A249D2AAB0060168F /* UnitFormatter.swift */; };
+		AD8FA32D249D2F830060168F /* UInt8Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FA32C249D2F830060168F /* UInt8Ext.swift */; };
+		ADA13276249B815600A8CBED /* KissCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13274249B815600A8CBED /* KissCommand.swift */; };
+		ADA13277249B815600A8CBED /* KissCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13275249B815600A8CBED /* KissCodec.swift */; };
+		ADA13279249B818000A8CBED /* ASCIIByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13278249B818000A8CBED /* ASCIIByte.swift */; };
+		ADA1327B249B81F500A8CBED /* KissSerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1327A249B81F500A8CBED /* KissSerialConnection.swift */; };
+		ADA1327F249B82B600A8CBED /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = ADA1327E249B82B600A8CBED /* Cartfile */; };
+		ADA13282249B831400A8CBED /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA13281249B831400A8CBED /* CleanroomLogger.framework */; };
+		ADA1328A249B840100A8CBED /* CleanroomLogger.framework.dSYM in Copy Debug Symbols */ = {isa = PBXBuildFile; fileRef = ADA13289249B840100A8CBED /* CleanroomLogger.framework.dSYM */; };
+		ADA1328D249B847300A8CBED /* NSDataExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1328C249B847300A8CBED /* NSDataExt.swift */; };
+		ADA1328F249B84E800A8CBED /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1328E249B84E800A8CBED /* Connection.swift */; };
+		ADA13295249B85A700A8CBED /* KissConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13294249B85A700A8CBED /* KissConnection.swift */; };
+		ADA13297249B866A00A8CBED /* ChannelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13296249B866A00A8CBED /* ChannelDelegate.swift */; };
+		ADA13299249B876300A8CBED /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13298249B876300A8CBED /* Errors.swift */; };
+		ADA1329F249B8A4A00A8CBED /* MobilinkdTncConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1329E249B8A4A00A8CBED /* MobilinkdTncConnection.swift */; };
+		ADA132A1249BC05D00A8CBED /* PowerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132A0249BC05D00A8CBED /* PowerSettingsViewController.swift */; };
+		ADA132A3249BC08D00A8CBED /* ModemSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132A2249BC08D00A8CBED /* ModemSettingsViewController.swift */; };
+		ADA132A5249BC0F300A8CBED /* UpdateFirmwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132A4249BC0F300A8CBED /* UpdateFirmwareViewController.swift */; };
+		ADA132A7249BCBE200A8CBED /* CleanroomLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ADA13281249B831400A8CBED /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ADA132A9249BD37700A8CBED /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA132A8249BD37700A8CBED /* Credits.html */; };
+		ADA132AC249C1C8300A8CBED /* DeviceEventWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132AB249C1C8300A8CBED /* DeviceEventWatcher.swift */; };
+		ADC35336249C383C00CB21BB /* IODevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC35335249C383C00CB21BB /* IODevice.swift */; };
+		ADC35338249CDA7400CB21BB /* DummyConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC35337249CDA7400CB21BB /* DummyConnection.swift */; };
+		ADC3DF5E2495930D0099CF50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF5D2495930D0099CF50 /* AppDelegate.swift */; };
+		ADC3DF622495930E0099CF50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADC3DF612495930E0099CF50 /* Assets.xcassets */; };
+		ADC3DF652495930E0099CF50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC3DF632495930E0099CF50 /* Main.storyboard */; };
+		ADC3DF7A2495AABF0099CF50 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF792495AABF0099CF50 /* MainViewController.swift */; };
+		ADC3DF7C2495B5130099CF50 /* AudioInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF7B2495B5130099CF50 /* AudioInputViewController.swift */; };
+		ADC3DF7E2495B52D0099CF50 /* AudioOutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF7D2495B52D0099CF50 /* AudioOutputViewController.swift */; };
+		ADC3DF802495B5460099CF50 /* TncInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF7F2495B5460099CF50 /* TncInfoViewController.swift */; };
+		ADC3DF822495B5620099CF50 /* KISSParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF812495B5620099CF50 /* KISSParamsViewController.swift */; };
+		ADF0DF92249E2D8500052855 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF0DF91249E2D8500052855 /* ByteOrder.swift */; };
+		ADF0DF94249EE9E800052855 /* UIntToBytesConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF0DF93249EE9E800052855 /* UIntToBytesConvertable.swift */; };
+		ADF0DF9624A0D74A00052855 /* SuffixFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF0DF9524A0D74A00052855 /* SuffixFormatter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ADA13288249B83E900A8CBED /* Copy Debug Symbols */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				ADA1328A249B840100A8CBED /* CleanroomLogger.framework.dSYM in Copy Debug Symbols */,
+			);
+			name = "Copy Debug Symbols";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADA132A6249BCBD000A8CBED /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				ADA132A7249BCBE200A8CBED /* CleanroomLogger.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AD8FA320249D252E0060168F /* BatteryLevelValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryLevelValueTransformer.swift; sourceTree = "<group>"; };
+		AD8FA32A249D2AAB0060168F /* UnitFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitFormatter.swift; sourceTree = "<group>"; };
+		AD8FA32C249D2F830060168F /* UInt8Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt8Ext.swift; sourceTree = "<group>"; };
+		ADA13274249B815600A8CBED /* KissCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissCommand.swift; sourceTree = "<group>"; };
+		ADA13275249B815600A8CBED /* KissCodec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissCodec.swift; sourceTree = "<group>"; };
+		ADA13278249B818000A8CBED /* ASCIIByte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASCIIByte.swift; sourceTree = "<group>"; };
+		ADA1327A249B81F500A8CBED /* KissSerialConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissSerialConnection.swift; sourceTree = "<group>"; };
+		ADA1327E249B82B600A8CBED /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
+		ADA13281249B831400A8CBED /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = SOURCE_ROOT; };
+		ADA13289249B840100A8CBED /* CleanroomLogger.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = CleanroomLogger.framework.dSYM; sourceTree = "<group>"; };
+		ADA1328C249B847300A8CBED /* NSDataExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataExt.swift; sourceTree = "<group>"; };
+		ADA1328E249B84E800A8CBED /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		ADA13294249B85A700A8CBED /* KissConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissConnection.swift; sourceTree = "<group>"; };
+		ADA13296249B866A00A8CBED /* ChannelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelDelegate.swift; sourceTree = "<group>"; };
+		ADA13298249B876300A8CBED /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		ADA1329E249B8A4A00A8CBED /* MobilinkdTncConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilinkdTncConnection.swift; sourceTree = "<group>"; };
+		ADA132A0249BC05D00A8CBED /* PowerSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSettingsViewController.swift; sourceTree = "<group>"; };
+		ADA132A2249BC08D00A8CBED /* ModemSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModemSettingsViewController.swift; sourceTree = "<group>"; };
+		ADA132A4249BC0F300A8CBED /* UpdateFirmwareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFirmwareViewController.swift; sourceTree = "<group>"; };
+		ADA132A8249BD37700A8CBED /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
+		ADA132AB249C1C8300A8CBED /* DeviceEventWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceEventWatcher.swift; sourceTree = "<group>"; };
+		ADC35335249C383C00CB21BB /* IODevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IODevice.swift; sourceTree = "<group>"; };
+		ADC35337249CDA7400CB21BB /* DummyConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyConnection.swift; sourceTree = "<group>"; };
+		ADC3DF5A2495930D0099CF50 /* Mobilinkd TNC Configuration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mobilinkd TNC Configuration.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC3DF5D2495930D0099CF50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ADC3DF612495930E0099CF50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ADC3DF642495930E0099CF50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ADC3DF662495930E0099CF50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ADC3DF672495930E0099CF50 /* MacTncConfig.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacTncConfig.entitlements; sourceTree = "<group>"; };
+		ADC3DF792495AABF0099CF50 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		ADC3DF7B2495B5130099CF50 /* AudioInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInputViewController.swift; sourceTree = "<group>"; };
+		ADC3DF7D2495B52D0099CF50 /* AudioOutputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioOutputViewController.swift; sourceTree = "<group>"; };
+		ADC3DF7F2495B5460099CF50 /* TncInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TncInfoViewController.swift; sourceTree = "<group>"; };
+		ADC3DF812495B5620099CF50 /* KISSParamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KISSParamsViewController.swift; sourceTree = "<group>"; };
+		ADF0DF91249E2D8500052855 /* ByteOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
+		ADF0DF93249EE9E800052855 /* UIntToBytesConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIntToBytesConvertable.swift; sourceTree = "<group>"; };
+		ADF0DF9524A0D74A00052855 /* SuffixFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixFormatter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ADC3DF572495930D0099CF50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADA13282249B831400A8CBED /* CleanroomLogger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ADA13273249B80ED00A8CBED /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				ADA13278249B818000A8CBED /* ASCIIByte.swift */,
+				ADA13296249B866A00A8CBED /* ChannelDelegate.swift */,
+				ADA1328E249B84E800A8CBED /* Connection.swift */,
+				ADA132AB249C1C8300A8CBED /* DeviceEventWatcher.swift */,
+				ADC35337249CDA7400CB21BB /* DummyConnection.swift */,
+				ADC35335249C383C00CB21BB /* IODevice.swift */,
+				ADA13275249B815600A8CBED /* KissCodec.swift */,
+				ADA13274249B815600A8CBED /* KissCommand.swift */,
+				ADA13294249B85A700A8CBED /* KissConnection.swift */,
+				ADA1327A249B81F500A8CBED /* KissSerialConnection.swift */,
+				ADA1329E249B8A4A00A8CBED /* MobilinkdTncConnection.swift */,
+			);
+			path = IO;
+			sourceTree = "<group>";
+		};
+		ADA13280249B82DE00A8CBED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ADA13281249B831400A8CBED /* CleanroomLogger.framework */,
+				ADA13289249B840100A8CBED /* CleanroomLogger.framework.dSYM */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ADA1328B249B843A00A8CBED /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ADF0DF93249EE9E800052855 /* UIntToBytesConvertable.swift */,
+				ADA1328C249B847300A8CBED /* NSDataExt.swift */,
+				AD8FA32C249D2F830060168F /* UInt8Ext.swift */,
+				ADF0DF91249E2D8500052855 /* ByteOrder.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ADA132AA249BF3B400A8CBED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ADC3DF512495930D0099CF50 = {
+			isa = PBXGroup;
+			children = (
+				ADC3DF5C2495930D0099CF50 /* MacTncConfig */,
+				ADC3DF5B2495930D0099CF50 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ADC3DF5B2495930D0099CF50 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ADC3DF5A2495930D0099CF50 /* Mobilinkd TNC Configuration.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ADC3DF5C2495930D0099CF50 /* MacTncConfig */ = {
+			isa = PBXGroup;
+			children = (
+				ADA132AA249BF3B400A8CBED /* Model */,
+				ADC3DF5D2495930D0099CF50 /* AppDelegate.swift */,
+				ADC3DF612495930E0099CF50 /* Assets.xcassets */,
+				ADA1327E249B82B600A8CBED /* Cartfile */,
+				ADA13298249B876300A8CBED /* Errors.swift */,
+				ADA1328B249B843A00A8CBED /* Extensions */,
+				ADA13280249B82DE00A8CBED /* Frameworks */,
+				ADC3DF662495930E0099CF50 /* Info.plist */,
+				ADA13273249B80ED00A8CBED /* IO */,
+				ADC3DF632495930E0099CF50 /* Main.storyboard */,
+				ADC3DF672495930E0099CF50 /* MacTncConfig.entitlements */,
+				ADC3DF782495A7890099CF50 /* View */,
+				ADA132A8249BD37700A8CBED /* Credits.html */,
+			);
+			path = MacTncConfig;
+			sourceTree = "<group>";
+		};
+		ADC3DF782495A7890099CF50 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ADC3DF7B2495B5130099CF50 /* AudioInputViewController.swift */,
+				ADC3DF7D2495B52D0099CF50 /* AudioOutputViewController.swift */,
+				AD8FA320249D252E0060168F /* BatteryLevelValueTransformer.swift */,
+				ADC3DF812495B5620099CF50 /* KISSParamsViewController.swift */,
+				ADC3DF792495AABF0099CF50 /* MainViewController.swift */,
+				ADA132A2249BC08D00A8CBED /* ModemSettingsViewController.swift */,
+				ADA132A0249BC05D00A8CBED /* PowerSettingsViewController.swift */,
+				ADF0DF9524A0D74A00052855 /* SuffixFormatter.swift */,
+				ADC3DF7F2495B5460099CF50 /* TncInfoViewController.swift */,
+				AD8FA32A249D2AAB0060168F /* UnitFormatter.swift */,
+				ADA132A4249BC0F300A8CBED /* UpdateFirmwareViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ADC3DF592495930D0099CF50 /* Mobilinkd TNC Configuration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ADC3DF6A2495930E0099CF50 /* Build configuration list for PBXNativeTarget "Mobilinkd TNC Configuration" */;
+			buildPhases = (
+				ADC3DF562495930D0099CF50 /* Sources */,
+				ADC3DF572495930D0099CF50 /* Frameworks */,
+				ADC3DF582495930D0099CF50 /* Resources */,
+				ADA13288249B83E900A8CBED /* Copy Debug Symbols */,
+				ADA132A6249BCBD000A8CBED /* Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mobilinkd TNC Configuration";
+			productName = TncConfigApp;
+			productReference = ADC3DF5A2495930D0099CF50 /* Mobilinkd TNC Configuration.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ADC3DF522495930D0099CF50 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Mobilinkd LLC";
+				TargetAttributes = {
+					ADC3DF592495930D0099CF50 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = ADC3DF552495930D0099CF50 /* Build configuration list for PBXProject "MacTncConfig" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ADC3DF512495930D0099CF50;
+			productRefGroup = ADC3DF5B2495930D0099CF50 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ADC3DF592495930D0099CF50 /* Mobilinkd TNC Configuration */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ADC3DF582495930D0099CF50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADA1327F249B82B600A8CBED /* Cartfile in Resources */,
+				ADA132A9249BD37700A8CBED /* Credits.html in Resources */,
+				ADC3DF622495930E0099CF50 /* Assets.xcassets in Resources */,
+				ADC3DF652495930E0099CF50 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ADC3DF562495930D0099CF50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADA1328F249B84E800A8CBED /* Connection.swift in Sources */,
+				ADC3DF7E2495B52D0099CF50 /* AudioOutputViewController.swift in Sources */,
+				AD8FA32D249D2F830060168F /* UInt8Ext.swift in Sources */,
+				ADA13277249B815600A8CBED /* KissCodec.swift in Sources */,
+				ADA132A5249BC0F300A8CBED /* UpdateFirmwareViewController.swift in Sources */,
+				ADA13297249B866A00A8CBED /* ChannelDelegate.swift in Sources */,
+				ADF0DF92249E2D8500052855 /* ByteOrder.swift in Sources */,
+				ADC3DF7A2495AABF0099CF50 /* MainViewController.swift in Sources */,
+				ADA132A3249BC08D00A8CBED /* ModemSettingsViewController.swift in Sources */,
+				ADA13279249B818000A8CBED /* ASCIIByte.swift in Sources */,
+				ADC35336249C383C00CB21BB /* IODevice.swift in Sources */,
+				ADC3DF7C2495B5130099CF50 /* AudioInputViewController.swift in Sources */,
+				ADC35338249CDA7400CB21BB /* DummyConnection.swift in Sources */,
+				ADA1329F249B8A4A00A8CBED /* MobilinkdTncConnection.swift in Sources */,
+				ADA1327B249B81F500A8CBED /* KissSerialConnection.swift in Sources */,
+				ADA132AC249C1C8300A8CBED /* DeviceEventWatcher.swift in Sources */,
+				ADA13295249B85A700A8CBED /* KissConnection.swift in Sources */,
+				ADF0DF9624A0D74A00052855 /* SuffixFormatter.swift in Sources */,
+				ADF0DF94249EE9E800052855 /* UIntToBytesConvertable.swift in Sources */,
+				ADC3DF822495B5620099CF50 /* KISSParamsViewController.swift in Sources */,
+				AD8FA32B249D2AAB0060168F /* UnitFormatter.swift in Sources */,
+				ADA13276249B815600A8CBED /* KissCommand.swift in Sources */,
+				ADA13299249B876300A8CBED /* Errors.swift in Sources */,
+				ADC3DF802495B5460099CF50 /* TncInfoViewController.swift in Sources */,
+				AD8FA321249D252E0060168F /* BatteryLevelValueTransformer.swift in Sources */,
+				ADA1328D249B847300A8CBED /* NSDataExt.swift in Sources */,
+				ADA132A1249BC05D00A8CBED /* PowerSettingsViewController.swift in Sources */,
+				ADC3DF5E2495930D0099CF50 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ADC3DF632495930E0099CF50 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADC3DF642495930E0099CF50 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ADC3DF682495930E0099CF50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ADC3DF692495930E0099CF50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		ADC3DF6B2495930E0099CF50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MacTncConfig/MacTncConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EX25C7QZ85;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = MacTncConfig/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobilinkd.MacTncConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		ADC3DF6C2495930E0099CF50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MacTncConfig/MacTncConfig.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EX25C7QZ85;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = MacTncConfig/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobilinkd.MacTncConfig;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ADC3DF552495930D0099CF50 /* Build configuration list for PBXProject "MacTncConfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADC3DF682495930E0099CF50 /* Debug */,
+				ADC3DF692495930E0099CF50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ADC3DF6A2495930E0099CF50 /* Build configuration list for PBXNativeTarget "Mobilinkd TNC Configuration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADC3DF6B2495930E0099CF50 /* Debug */,
+				ADC3DF6C2495930E0099CF50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ADC3DF522495930D0099CF50 /* Project object */;
+}
