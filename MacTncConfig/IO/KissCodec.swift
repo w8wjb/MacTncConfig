@@ -124,7 +124,6 @@ class KissCodec {
       
     case .WaitCommand:
       if byte == KissCodec.FEND {
-        state = .WaitFEND
         break
       }
       
@@ -159,7 +158,7 @@ class KissCodec {
       
       state = .WaitData
       
-    default:
+    case .WaitData, .WaitCommandData, .WaitLF:
       
       if byte == KissCodec.FEND {
         flushBuffer()
@@ -178,7 +177,7 @@ class KissCodec {
       } else {
         buffer.append(byte)
       }
-      
+
     }
   }
   
