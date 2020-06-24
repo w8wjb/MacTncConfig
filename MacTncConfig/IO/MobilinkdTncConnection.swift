@@ -385,6 +385,10 @@ class MobilinkdTncConnection: KissSerialConnection {
         reset()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func reset() {
         
         DispatchQueue.main.async {
@@ -539,12 +543,13 @@ class MobilinkdTncConnection: KissSerialConnection {
             return
         }
         
+        // Handle on main thread
         DispatchQueue.main.async {
             self.handleIncomingKissCommand(packet)
         }
     }
     
-    func handleIncomingKissCommand(_ packet: KissComand) {
+    private func handleIncomingKissCommand(_ packet: KissComand) {
         
         if packet.command == KissComand.hardware {
             
@@ -849,6 +854,10 @@ class MobilinkdTncConnection: KissSerialConnection {
     
     func requestOutputGain() throws {
         try sendCommand(cmd: .getOutputGain)
+    }
+    
+    func requestAutoAdjustInput() throws {
+        try sendCommand(cmd: .adjustInputLevels)
     }
     
     func requestSaveEEPROM() throws {

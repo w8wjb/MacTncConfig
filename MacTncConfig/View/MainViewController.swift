@@ -43,24 +43,19 @@ class MainViewController: NSViewController {
         
         deviceArrayController.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         deviceArrayController.addObserver(self, forKeyPath: "selectedObjects", options: .new, context: nil)
-        
+
+        connection.addObserver(self, forKeyPath: "dynamicStatus", options:[.old, .new], context: nil)
+        connection.addObserver(self, forKeyPath: "canBatteryLevel", options: [.old, .new], context: nil)
+        connection.addObserver(self, forKeyPath: "canDeviceFirmwareUpdate", options: [.old, .new], context: nil)
         
         deviceEventWatcher = DeviceEventWatcher(delegate: self)
         
     }
     
-    override func viewDidAppear() {
-        connection.addObserver(self, forKeyPath: "dynamicStatus", options:[.old, .new], context: nil)
-        connection.addObserver(self, forKeyPath: "canBatteryLevel", options: [.old, .new], context: nil)
-        connection.addObserver(self, forKeyPath: "canDeviceFirmwareUpdate", options: [.old, .new], context: nil)
-        
-    }
-    
-    override func viewWillDisappear() {
+    deinit {
         connection.removeObserver(self, forKeyPath: "dynamicStatus")
         connection.removeObserver(self, forKeyPath: "canBatteryLevel")
         connection.removeObserver(self, forKeyPath: "canDeviceFirmwareUpdate")
-        
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {

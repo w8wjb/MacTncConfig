@@ -23,15 +23,10 @@ class AudioOutputViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear() {
-        super.viewWillAppear()
         connection.addObserver(self, forKeyPath: "canOutputTwist", options: [.initial, .new], context: nil)
     }
     
-    override func viewWillDisappear() {
-        super.viewWillDisappear()
+    deinit {
         connection.removeObserver(self, forKeyPath: "canOutputTwist")
     }
     

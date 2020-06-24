@@ -29,8 +29,12 @@ class PowerSettingsViewController: NSViewController {
         
         txtBatteryVoltage.formatter = UnitFormatter(unit: UnitElectricPotentialDifference.millivolts)
         txtBatteryVoltage.bind(.value, to: self , withKeyPath: "connection.batteryLevel", options: nil)
-
         
+    }
+    
+    deinit {
+        indBatteryLevel.unbind(.value)
+        txtBatteryVoltage.unbind(.value)
     }
     
 }

@@ -77,6 +77,7 @@ class UpdateFirmwareViewController: NSViewController {
     
     
     @IBAction func doUpdateFirmware(_ sender: Any) {
+        // TODO: Implement firmware updating
     }
     
     

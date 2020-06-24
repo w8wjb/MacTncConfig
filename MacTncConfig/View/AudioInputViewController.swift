@@ -33,12 +33,6 @@ class AudioInputViewController: NSViewController {
         lblInputTwistMin.formatter = formatter
         lblInputTwistMax.formatter = formatter
         txtInputTwist.formatter = formatter
-        
-    }
-    
-    
-    override func viewDidAppear() {
-        super.viewDidAppear()
 
         // There is no binding for the tick marks on a NSSlider, so we have to update it directly
         connection.addObserver(self, forKeyPath: "inputGainMin", options: [.initial, .new], context: nil)
@@ -46,17 +40,24 @@ class AudioInputViewController: NSViewController {
         connection.addObserver(self, forKeyPath: "inputTwistMin", options: [.initial, .new], context: nil)
         connection.addObserver(self, forKeyPath: "inputTwistMax", options: [.initial, .new], context: nil)
 
+    }
+
+    deinit {
+        connection.removeObserver(self, forKeyPath: "inputGainMin")
+        connection.removeObserver(self, forKeyPath: "inputGainMax")
+        connection.removeObserver(self, forKeyPath: "inputTwistMin")
+        connection.removeObserver(self, forKeyPath: "inputTwistMax")
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+
         // Start streaming the volume level
         try? connection.requestStreamVolume()
     }
     
     override func viewDidDisappear() {
         super.viewDidDisappear()
-
-        connection.removeObserver(self, forKeyPath: "inputGainMin")
-        connection.removeObserver(self, forKeyPath: "inputGainMax")
-        connection.removeObserver(self, forKeyPath: "inputTwistMin")
-        connection.removeObserver(self, forKeyPath: "inputTwistMax")
 
         // Stop streaming volume level
         try? connection.requestPollVolume()
@@ -81,7 +82,7 @@ class AudioInputViewController: NSViewController {
     
     
     @IBAction func autoAdjust(_ sender: NSButton) {
-        
+        try? connection.requestAutoAdjustInput()
     }
     
 }

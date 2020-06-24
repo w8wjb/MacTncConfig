@@ -278,7 +278,10 @@ class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
     }
     
     func sendCommand(cmd: KissComand) throws {
-        try start()
+        guard status == .started else {
+            Log.warning?.message("Trying to send command \(String(describing: cmd)) to connection in state \(String(describing: status))")
+            return
+        }
         let encoded = codec.encodeCommand(cmd)
         try write(encoded: encoded)
     }

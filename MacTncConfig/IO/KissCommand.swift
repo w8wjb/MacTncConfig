@@ -55,7 +55,7 @@ struct KissComand: CustomStringConvertible {
         let payload = message ?? data.hexEncoded
         
         if let subcmd = subcommand {
-            return "KISS Command: \(cmd)\(subcmd) - \(payload)"
+            return "KISS Command: \(cmd):\(subcmd) - \(payload)"
         }
         return "KISS Command: \(cmd) - \(payload)"
         
