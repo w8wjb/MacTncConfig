@@ -29,7 +29,7 @@ the KISS parameters, and various other parameters of the Mobilinkd TNCs.
 ### Installing
 
 
-Download the disk image of the latest release and drag to Applications.
+Download the disk image of the [latest release](https://github.com/w8wjb/MacTncConfig/releases/) and drag to Applications.
 
 ### Building
 
