@@ -8,7 +8,6 @@
 
 import Foundation
 import IOKit
-import CleanroomLogger
 
 class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
     
@@ -167,7 +166,7 @@ class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
         
         let ret = tcgetattr(fd, &options)
         if ret == -1 {
-            Log.error?.message("Could not get file descriptor options")
+            logger.error("Could not get file descriptor options")
             return nil
         }
         
@@ -213,7 +212,7 @@ class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
         
         let ret = tcgetattr(fd, &options)
         if ret == -1 {
-            Log.error?.message("Could not get file descriptor options")
+            logger.error("Could not get file descriptor options")
             return
         }
         
@@ -221,7 +220,7 @@ class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
         cfsetspeed(&options, speed_t(speed))
         
         if (tcsetattr(fd, TCSANOW, &options) == -1) {
-            Log.error?.message("Could not set baud")
+            logger.error("Could not set baud")
         }
         
     }
@@ -233,7 +232,7 @@ class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
     private func handleOutgoingData(_ done: Bool, dispatchData: DispatchData?, error: Int32) {
         if done {
             if error != 0 {
-                Log.error?.message("Error writing data \(error)")
+                logger.error("Error writing data \(error)")
             } else {
                 didTransmit()
             }
@@ -248,18 +247,18 @@ class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
                 codec.flushBuffer()
                 try stop()
             } catch {
-                Log.error?.message("\(error)")
+                logger.error("\(error)")
             }
             return
         }
         
         if (done && error > 0) {
-            Log.error?.message("Error reading data \(error)")
+            logger.error("Error reading data \(error)")
             return
         }
         
         guard let data = dispatchData else {
-            Log.debug?.message("handleIncomingData received no data")
+            logger.debug("handleIncomingData received no data")
             return
         }
         
@@ -279,7 +278,7 @@ class KissSerialConnection: Connection, KissConnection, ChannelDelegate {
     
     func sendCommand(cmd: KissComand) throws {
         guard status == .started else {
-            Log.warning?.message("Trying to send command \(String(describing: cmd)) to connection in state \(String(describing: status))")
+            logger.warning("Trying to send command \(String(describing: cmd)) to connection in state \(String(describing: status))")
             return
         }
         let encoded = codec.encodeCommand(cmd)

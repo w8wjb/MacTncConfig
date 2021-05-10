@@ -7,7 +7,6 @@
 //
 
 import AppKit
-import CleanroomLogger
 
 class MainViewController: NSViewController {
     

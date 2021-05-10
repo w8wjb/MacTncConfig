@@ -9,7 +9,9 @@
 import Cocoa
 import IOKit
 import IOKit.usb
-import CleanroomLogger
+import SwiftyBeaver
+
+let logger = SwiftyBeaver.self
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -21,11 +23,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
 
-        // Setup logging config
-        let logConfig = XcodeLogConfiguration(debugMode: true,
-                                              stdStreamsMode: .useExclusively,
-                                              mimicOSLogOutput: false)
-        Log.enable(configuration: logConfig)
+        
+        let console = ConsoleDestination()
+        console.minLevel = .debug        
+        logger.addDestination(console)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

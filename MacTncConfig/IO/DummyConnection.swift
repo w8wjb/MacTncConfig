@@ -8,7 +8,6 @@
 
 
 import Foundation
-import CleanroomLogger
 
 /**
  *
@@ -33,7 +32,7 @@ class DummyConnection: MobilinkdTncConnection {
             return
         }
 
-        Log.info?.message("Starting dummy connection")
+        logger.info("Starting dummy connection")
         status = .starting
         
         try initChannel()
@@ -44,7 +43,7 @@ class DummyConnection: MobilinkdTncConnection {
     override func initChannel() throws {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-            Log.info?.message("Started dummy connection")
+            logger.info("Started dummy connection")
             
             self.hardwareVersion = "D1"
             self.firmwareVersion = "0.1.2.3"
@@ -61,7 +60,7 @@ class DummyConnection: MobilinkdTncConnection {
             return
         }
 
-        Log.info?.message("Stopping dummy connection")
+        logger.info("Stopping dummy connection")
         status = .stopping
         
         try shutdownChannel()
@@ -75,7 +74,7 @@ class DummyConnection: MobilinkdTncConnection {
     override func shutdownChannel() throws {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4)) {
-            Log.info?.message("Stopped dummy connection")
+            logger.info("Stopped dummy connection")
 
             self.hardwareVersion = ""
             self.firmwareVersion = ""

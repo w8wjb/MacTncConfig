@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CleanroomLogger
 
 @objc protocol ChannelDelegate {
   

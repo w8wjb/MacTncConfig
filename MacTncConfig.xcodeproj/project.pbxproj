@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD36AC932649E0F40023D06B /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = AD36AC922649E0F40023D06B /* SwiftyBeaver */; };
 		AD8FA321249D252E0060168F /* BatteryLevelValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FA320249D252E0060168F /* BatteryLevelValueTransformer.swift */; };
 		AD8FA32B249D2AAB0060168F /* UnitFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FA32A249D2AAB0060168F /* UnitFormatter.swift */; };
 		AD8FA32D249D2F830060168F /* UInt8Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8FA32C249D2F830060168F /* UInt8Ext.swift */; };
@@ -14,9 +15,6 @@
 		ADA13277249B815600A8CBED /* KissCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13275249B815600A8CBED /* KissCodec.swift */; };
 		ADA13279249B818000A8CBED /* ASCIIByte.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13278249B818000A8CBED /* ASCIIByte.swift */; };
 		ADA1327B249B81F500A8CBED /* KissSerialConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1327A249B81F500A8CBED /* KissSerialConnection.swift */; };
-		ADA1327F249B82B600A8CBED /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = ADA1327E249B82B600A8CBED /* Cartfile */; };
-		ADA13282249B831400A8CBED /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA13281249B831400A8CBED /* CleanroomLogger.framework */; };
-		ADA1328A249B840100A8CBED /* CleanroomLogger.framework.dSYM in Copy Debug Symbols */ = {isa = PBXBuildFile; fileRef = ADA13289249B840100A8CBED /* CleanroomLogger.framework.dSYM */; };
 		ADA1328D249B847300A8CBED /* NSDataExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1328C249B847300A8CBED /* NSDataExt.swift */; };
 		ADA1328F249B84E800A8CBED /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA1328E249B84E800A8CBED /* Connection.swift */; };
 		ADA13295249B85A700A8CBED /* KissConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA13294249B85A700A8CBED /* KissConnection.swift */; };
@@ -26,7 +24,6 @@
 		ADA132A1249BC05D00A8CBED /* PowerSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132A0249BC05D00A8CBED /* PowerSettingsViewController.swift */; };
 		ADA132A3249BC08D00A8CBED /* ModemSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132A2249BC08D00A8CBED /* ModemSettingsViewController.swift */; };
 		ADA132A5249BC0F300A8CBED /* UpdateFirmwareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132A4249BC0F300A8CBED /* UpdateFirmwareViewController.swift */; };
-		ADA132A7249BCBE200A8CBED /* CleanroomLogger.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ADA13281249B831400A8CBED /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ADA132A9249BD37700A8CBED /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA132A8249BD37700A8CBED /* Credits.html */; };
 		ADA132AC249C1C8300A8CBED /* DeviceEventWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA132AB249C1C8300A8CBED /* DeviceEventWatcher.swift */; };
 		ADC35336249C383C00CB21BB /* IODevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC35335249C383C00CB21BB /* IODevice.swift */; };
@@ -51,7 +48,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				ADA1328A249B840100A8CBED /* CleanroomLogger.framework.dSYM in Copy Debug Symbols */,
 			);
 			name = "Copy Debug Symbols";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,7 +58,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ADA132A7249BCBE200A8CBED /* CleanroomLogger.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,9 +72,6 @@
 		ADA13275249B815600A8CBED /* KissCodec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissCodec.swift; sourceTree = "<group>"; };
 		ADA13278249B818000A8CBED /* ASCIIByte.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASCIIByte.swift; sourceTree = "<group>"; };
 		ADA1327A249B81F500A8CBED /* KissSerialConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissSerialConnection.swift; sourceTree = "<group>"; };
-		ADA1327E249B82B600A8CBED /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
-		ADA13281249B831400A8CBED /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = SOURCE_ROOT; };
-		ADA13289249B840100A8CBED /* CleanroomLogger.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CleanroomLogger.framework.dSYM; path = ../Carthage/Build/Mac/CleanroomLogger.framework.dSYM; sourceTree = "<group>"; };
 		ADA1328C249B847300A8CBED /* NSDataExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataExt.swift; sourceTree = "<group>"; };
 		ADA1328E249B84E800A8CBED /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		ADA13294249B85A700A8CBED /* KissConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissConnection.swift; sourceTree = "<group>"; };
@@ -114,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADA13282249B831400A8CBED /* CleanroomLogger.framework in Frameworks */,
+				AD36AC932649E0F40023D06B /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +134,6 @@
 		ADA13280249B82DE00A8CBED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ADA13281249B831400A8CBED /* CleanroomLogger.framework */,
-				ADA13289249B840100A8CBED /* CleanroomLogger.framework.dSYM */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,7 +178,6 @@
 				ADA132AA249BF3B400A8CBED /* Model */,
 				ADC3DF5D2495930D0099CF50 /* AppDelegate.swift */,
 				ADC3DF612495930E0099CF50 /* Assets.xcassets */,
-				ADA1327E249B82B600A8CBED /* Cartfile */,
 				ADA13298249B876300A8CBED /* Errors.swift */,
 				ADA1328B249B843A00A8CBED /* Extensions */,
 				ADA13280249B82DE00A8CBED /* Frameworks */,
@@ -238,6 +227,9 @@
 			dependencies = (
 			);
 			name = "Mobilinkd TNC Configuration";
+			packageProductDependencies = (
+				AD36AC922649E0F40023D06B /* SwiftyBeaver */,
+			);
 			productName = TncConfigApp;
 			productReference = ADC3DF5A2495930D0099CF50 /* Mobilinkd TNC Configuration.app */;
 			productType = "com.apple.product-type.application";
@@ -266,6 +258,9 @@
 				Base,
 			);
 			mainGroup = ADC3DF512495930D0099CF50;
+			packageReferences = (
+				AD36AC912649E0F40023D06B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			productRefGroup = ADC3DF5B2495930D0099CF50 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -280,7 +275,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADA1327F249B82B600A8CBED /* Cartfile in Resources */,
 				ADA132A9249BD37700A8CBED /* Credits.html in Resources */,
 				ADC3DF622495930E0099CF50 /* Assets.xcassets in Resources */,
 				ADC3DF652495930E0099CF50 /* Main.storyboard in Resources */,
@@ -459,7 +453,7 @@
 				CODE_SIGN_ENTITLEMENTS = MacTncConfig/MacTncConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = EX25C7QZ85;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -485,7 +479,7 @@
 				CODE_SIGN_ENTITLEMENTS = MacTncConfig/MacTncConfig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = EX25C7QZ85;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -526,6 +520,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AD36AC912649E0F40023D06B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD36AC922649E0F40023D06B /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD36AC912649E0F40023D06B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ADC3DF522495930D0099CF50 /* Project object */;
 }

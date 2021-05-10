@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CleanroomLogger
 
 class KissCodec {
   
@@ -193,7 +192,7 @@ class KissCodec {
   func flushMessage() {
     
     if !message.isEmpty {
-      Log.debug?.message(message.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
+      logger.debug(message.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
     }
     message = ""
   }

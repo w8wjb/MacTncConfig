@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CleanroomLogger
 
 
 let TNC_API1_0: UInt16 = 0x0100
@@ -481,10 +480,10 @@ class MobilinkdTncConnection: KissSerialConnection {
     
     func saveSettings() throws {
         guard status == .started else {
-            Log.debug?.message("Can't save when connection is not started")
+            logger.debug("Can't save when connection is not started")
             return
         }
-        Log.debug?.message("Saving Mobilinkd settings")
+        logger.debug("Saving Mobilinkd settings")
         
         for prop in changedProperties {
             
@@ -539,7 +538,7 @@ class MobilinkdTncConnection: KissSerialConnection {
     
     @objc func handleIncomingKissCommand(notification: Notification) {
         guard let packet = notification.userInfo?["packet"] as? KissComand else {
-            Log.error?.message("Notification did not contain a KISS command")
+            logger.error("Notification did not contain a KISS command")
             return
         }
         
@@ -556,7 +555,7 @@ class MobilinkdTncConnection: KissSerialConnection {
             var resetDirty = true
             
             guard let hwCommand = HardwareCommand(rawValue: packet.subcommand!) else {
-                Log.warning?.message("Unknown hardware command \(packet.subcommand!)")
+                logger.warning("Unknown hardware command \(packet.subcommand!)")
                 return
             }
             
@@ -568,7 +567,7 @@ class MobilinkdTncConnection: KissSerialConnection {
                 let vol = log(Float(v)) / log2
                 // Transform it to a value between 0 and 10. Makes it easier to work with NSSlider
                 self.inputLevel = min(10, Int(vol * 1.25 + 0.5))
-                Log.debug?.message("hwPollInputLevel = \(self.inputLevel)")
+                logger.debug("hwPollInputLevel = \(self.inputLevel)")
                 
             case .getOutputGain:
                 
@@ -578,55 +577,55 @@ class MobilinkdTncConnection: KissSerialConnection {
                     self.outputGain = packet.value(as: Int16.self)
                 }
                 
-                Log.debug?.message("hwGetOutputGain = \(self.outputGain)")
+                logger.debug("hwGetOutputGain = \(self.outputGain)")
                 
             case .getOutputTwist:
                 outputTwist = Int8(packet.value)
                 canOutputTwist = true
-                Log.debug?.message("hwGetOutputTwist = \(self.outputTwist)")
+                logger.debug("hwGetOutputTwist = \(self.outputTwist)")
                 
             case .getBatteryLevel:
                 resetDirty = false
                 canBatteryLevel = true
                 self.batteryLevel = packet.value(as: UInt16.self)
-                Log.debug?.message("hwGetBatteryLevel = \(self.batteryLevel)")
+                logger.debug("hwGetBatteryLevel = \(self.batteryLevel)")
                 
             case .getInputGain:
                 if apiVersion == TNC_API1_0 {
                     self.inputAttenuation = (packet.value != 0)
-                    Log.debug?.message("hwGetInputAttenuation = \(self.inputAttenuation)")
+                    logger.debug("hwGetInputAttenuation = \(self.inputAttenuation)")
                 } else {
                     self.inputGain = packet.value(as: Int16.self)
-                    Log.debug?.message("hwGetInputGain = \(self.inputGain)")
+                    logger.debug("hwGetInputGain = \(self.inputGain)")
                 }
                 
             case .getInputTwist:
                 self.inputTwist = packet.value(as: Int8.self)
-                Log.debug?.message("getInputTwist = \(self.inputTwist)")
+                logger.debug("getInputTwist = \(self.inputTwist)")
                 
             case .getSquelchLevel:
                 self.dcd = (packet.value == 0)
-                Log.debug?.message("hwGetSquelchLevel = \(self.dcd)")
+                logger.debug("hwGetSquelchLevel = \(self.dcd)")
                 
             case .getTXDelay:
-                Log.debug?.message("hwGetTXDelay = \(Int(packet.value))")
+                logger.debug("hwGetTXDelay = \(Int(packet.value))")
                 txDelay = packet.value
                 
             case .getPersistence:
                 persistence = packet.value
-                Log.debug?.message("hwGetPersistence = \(persistence)")
+                logger.debug("hwGetPersistence = \(persistence)")
                 
             case .getSlotTime:
                 slotTime = packet.value
-                Log.debug?.message("hwGetSlotTime = \(slotTime)")
+                logger.debug("hwGetSlotTime = \(slotTime)")
                 
             case .getTXTail: //
                 txTail = packet.value
-                Log.debug?.message("hwGetTXTail = \(txTail)")
+                logger.debug("hwGetTXTail = \(txTail)")
                 
             case .getDuplex:
                 duplex = (packet.value != 0)
-                Log.debug?.message("hwGetDuplex = \(duplex)")
+                logger.debug("hwGetDuplex = \(duplex)")
                 
             case .getFirmwareVersion:
                 resetDirty = false
@@ -637,21 +636,21 @@ class MobilinkdTncConnection: KissSerialConnection {
             case .getHardwareVersion:
                 resetDirty = false
                 if let version = packet.message {
-                    Log.debug?.message("hwGetHardwareVersion: \(version)")
+                    logger.debug("hwGetHardwareVersion: \(version)")
                     hardwareVersion = version
                 }
                 
             case .getSerialNumber:
                 resetDirty = false
                 if let serial = packet.message {
-                    Log.debug?.message("hwGetSerialNumber: = \(serial)")
+                    logger.debug("hwGetSerialNumber: = \(serial)")
                     serialNumber = serial
                 }
                 
             case .getMACAddress:
                 resetDirty = false
                 macAddress = packet.data.map({ String(format: "%02X", $0) }).joined(separator: ":")
-                Log.debug?.message("hwGetMACAddress: = \(macAddress ?? "")")
+                logger.debug("hwGetMACAddress: = \(macAddress ?? "")")
                 
             case .getDateTime:
                 resetDirty = false
@@ -670,37 +669,37 @@ class MobilinkdTncConnection: KissSerialConnection {
             case .getBluetoothName:
                 resetDirty = false
                 if let name = packet.message {
-                    Log.debug?.message("hwGetBluetoothName: = \(name)")
+                    logger.debug("hwGetBluetoothName: = \(name)")
                     bluetoothName = name
                 }
                 
             case .getBTConnTrack:
                 self.bluetoothConnectionTracking = (packet.value != 0)
-                Log.debug?.message("hwGetBTConnTrack = \(self.bluetoothConnectionTracking)")
+                logger.debug("hwGetBTConnTrack = \(self.bluetoothConnectionTracking)")
                 
             case .getVerbosity:
                 self.verbosity = (packet.value != 0)
                 canVerbose = true
-                Log.debug?.message("hwGetVerbosity = \(self.verbosity)")
+                logger.debug("hwGetVerbosity = \(self.verbosity)")
                 
             case .getPTTChannel:
                 self.pttChannel = packet.value
-                Log.debug?.message("hwGetPTTChannel = \(self.pttChannel)")
+                logger.debug("hwGetPTTChannel = \(self.pttChannel)")
                 
             case .getUSBPowerOn:
                 self.usbPowerOn = (packet.value != 0)
-                Log.debug?.message("hwGetUSBPowerOn = \(self.usbPowerOn)")
+                logger.debug("hwGetUSBPowerOn = \(self.usbPowerOn)")
                 
             case .getUSBPowerOff:
                 self.usbPowerOff = (packet.value != 0)
-                Log.debug?.message("hwGetUSBPowerOff = \(self.usbPowerOff)")
+                logger.debug("hwGetUSBPowerOff = \(self.usbPowerOff)")
                 
             case .getAPIVersion:
                 resetDirty = false
                 guard packet.data.count == 2 else { return }
                 
                 self.apiVersion = packet.value(as: UInt16.self)
-                Log.debug?.message("hwGetAPIVersion = \(self.apiVersion)")
+                logger.debug("hwGetAPIVersion = \(self.apiVersion)")
                 
             case .pollInputTwist:
                 // TODO: Ignoring POLL_INPUT_TWIST for now
@@ -709,22 +708,22 @@ class MobilinkdTncConnection: KissSerialConnection {
             case .getMinInputTwist:
                 resetDirty = false
                 self.inputTwistMin = packet.value(as: Int8.self)
-                Log.debug?.message("hwGetMinInputTwist = \(self.inputTwistMin)")
+                logger.debug("hwGetMinInputTwist = \(self.inputTwistMin)")
                 
             case .getMaxInputTwist:
                 resetDirty = false
                 self.inputTwistMax = packet.value(as: Int8.self)
-                Log.debug?.message("hwGetMaxInputTwist = \(self.inputTwistMax)")
+                logger.debug("hwGetMaxInputTwist = \(self.inputTwistMax)")
                 
             case .getMinInputGain:
                 resetDirty = false
                 self.inputGainMin = packet.value(as: Int16.self)
-                Log.debug?.message("hwGetMinInputGain = \(self.inputGainMin)")
+                logger.debug("hwGetMinInputGain = \(self.inputGainMin)")
                 
             case .getMaxInputGain:
                 resetDirty = false
                 self.inputGainMax = packet.value(as: Int16.self)
-                Log.debug?.message("hwGetMaxInputGain = \(self.inputGainMax)")
+                logger.debug("hwGetMaxInputGain = \(self.inputGainMax)")
                 
             case .getCapabilities:
                 
@@ -756,7 +755,7 @@ class MobilinkdTncConnection: KissSerialConnection {
                 
                 let rawValue = packet.data[0]
                 guard let extCmd = ExtendedHardwareCommand(rawValue: rawValue) else {
-                    Log.warning?.message("Unknown extende command \(rawValue)")
+                    logger.warning("Unknown extende command \(rawValue)")
                     return
                 }
                 
@@ -783,7 +782,7 @@ class MobilinkdTncConnection: KissSerialConnection {
             default:
                 resetDirty = false
                 let fullPacket = Data([packet.command, packet.subcommand!] + packet.data)
-                Log.error?.message("Unknown command \(packet)" + fullPacket.hexEncoded)
+                logger.error("Unknown command \(packet)" + fullPacket.hexEncoded)
                 break
             }
             
@@ -798,13 +797,13 @@ class MobilinkdTncConnection: KissSerialConnection {
             }
             
         } else {
-            Log.error?.message("Unknown packet: \(packet)")
+            logger.error("Unknown packet: \(packet)")
         }
         
     }
     
     func requestSettings() throws {
-        Log.debug?.message("Asking device for settings")
+        logger.debug("Asking device for settings")
         try requestStopTransmitting()
         try requestAllValues()
         try requestCapabilities()

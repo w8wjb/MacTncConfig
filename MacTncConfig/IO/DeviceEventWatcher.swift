@@ -10,7 +10,6 @@ import Foundation
 import IOKit
 import IOKit.usb
 import IOKit.serial
-import CleanroomLogger
 
 protocol DeviceWatcherDelegate {
     func deviceAdded(_ device: IODevice)
@@ -89,7 +88,7 @@ fileprivate func handleDeviceNotification(instance: UnsafeMutableRawPointer?, _ 
             }
             
         } else {
-            Log.error?.message("Could not fetch properties \(result)")
+            logger.error("Could not fetch properties \(result)")
         }
         
         IOObjectRelease(device)
