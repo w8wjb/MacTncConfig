@@ -55,6 +55,8 @@ class MainViewController: NSViewController {
         connection.removeObserver(self, forKeyPath: "dynamicStatus")
         connection.removeObserver(self, forKeyPath: "canBatteryLevel")
         connection.removeObserver(self, forKeyPath: "canDeviceFirmwareUpdate")
+        
+        deviceEventWatcher = nil
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -137,7 +139,6 @@ class MainViewController: NSViewController {
         
         if let selectedDevice = deviceArrayController.selectedObjects.first as? IODevice {
             
-            btnConnect.isEnabled = true
             if connection.devicePath != selectedDevice.path {
                 do {
                     try connection.stop()
@@ -148,33 +149,29 @@ class MainViewController: NSViewController {
             }
             
         } else {
-            btnConnect.isEnabled = false
             connection.devicePath = nil
         }
         
     }
     
     func handleConnectionStatusChange() {
-        
         switch connection.status {
         case .starting:
             spinConnectProgress.startAnimation(self)
             btnConnect.isEnabled = false
             
         case .started:
-            spinConnectProgress.stopAnimation(self)
             btnConnect.isEnabled = true
-            btnConnect.title = "Disconnect"
+            spinConnectProgress.stopAnimation(self)
             updateConfigSections()
             
         case .stopping:
-            spinConnectProgress.startAnimation(self)
             btnConnect.isEnabled = false
+            spinConnectProgress.startAnimation(self)
             
         case .stopped:
-            spinConnectProgress.stopAnimation(self)
-            btnConnect.title = "Connect"
             btnConnect.isEnabled = true
+            spinConnectProgress.stopAnimation(self)
             updateConfigSections()
             tabViewController?.selectedTabViewItemIndex = 0
             
@@ -258,6 +255,11 @@ extension MainViewController : NSTableViewDelegate {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        guard
+            tblConfigSections.selectedRow > 0,
+            tblConfigSections.selectedRow < tabViewItems.count
+        else { return }
         
         let selectedTab = tabViewItems[tblConfigSections.selectedRow]
         

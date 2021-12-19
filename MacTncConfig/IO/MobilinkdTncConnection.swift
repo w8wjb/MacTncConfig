@@ -11,36 +11,11 @@ import Foundation
 
 let TNC_API1_0: UInt16 = 0x0100
 let TNC_API2_0: UInt16 = 0x0200
+let TNC_API2_0_1: UInt16 = 0x0201
 
 
 class MobilinkdTncConnection: KissSerialConnection {
-    
-    enum ModemType: UInt8, CaseIterable, CustomStringConvertible {
-        case AFSK1200 = 1
-        case AFSK300 = 2
-        case FSK9600 = 3
-        case PSK31 = 4
-        case OFDM = 5
-        case MFSK16 = 6
-        
-        var description: String {
-            switch self {
-            case .AFSK1200:
-                return "1200 baud AFSK"
-            case .AFSK300:
-                return "300 baud AFSK"
-            case .FSK9600:
-                return "9600 baud FSK"
-            case .PSK31:
-                return "PSK31"
-            case .OFDM:
-                return "OFDM"
-            case .MFSK16:
-                return "MFSK16"
-            }
-        }
-    }
-    
+
     /**
      * Mobilinkd-specific KISS hardware commands
      */
@@ -220,37 +195,29 @@ class MobilinkdTncConnection: KissSerialConnection {
         
         // MARK: - Extended hardware commands
         
-        /**
-         * Extended commands are two+ bytes in length.  They start at 80:00
-         * and go through BF:FF (14 significant bits), then proceed to C0:00:00
-         * through CF:FF:FF (20 more significant bits).
-         *
-         * If needed, the commands can be extended to 9 nibbles (D0 - DF),
-         * 13 nibbles (E0-EF) and 17 nibbles (F0-FF).
-         */
-        case extendedCmd = 128
+        case extendedCmd = 0xC1
         
         
     }
     
     fileprivate enum ExtendedHardwareCommand: UInt8 {
-        case OK = 0
-        case getModemType = 1
-        case setModemType = 2
+        case OK = 0x80
+        case getModemType = 0x81
+        case setModemType = 0x82
         /** < Return a list of supported modem types */
-        case getModemTypes = 3
+        case getModemTypes = 0x83
         /** < Number of aliases supported */
-        case getAliases = 8
+        case getAliases = 0x88
         /** < Alias number (uint8_t), 8 characters, 5 bytes (set, use, insert_id, preempt, hops) */
-        case getAlias = 9
+        case getAlias = 0x89
         /** < Alias number (uint8_t), 8 characters, 5 bytes (set, use, insert_id, preempt, hops) */
-        case setAlias = 10
+        case setAlias = 0x0A
         /** < Number of beacons supported */
-        case getBeacons = 12
+        case getBeacons = 0x8C
         /** < Beacon number (uint8_t), uint16_t interval in seconds, 3 NUL terminated strings */
-        case getBeacon = 13
+        case getBeacon = 0x8D
         /** < Beacon number (uint8_t), uint16_t interval in seconds, 3 NUL terminated strings (callsign, path, text) */
-        case setBeacon = 14
+        case setBeacon = 0x8E
     }
     
     struct Capabilities: OptionSet {
@@ -317,14 +284,14 @@ class MobilinkdTncConnection: KissSerialConnection {
     /** Allow invalid CRC through when true (1) */
     @objc dynamic var passall: Bool = false
     
-    var modemType: ModemType = .AFSK1200 {
+    @objc dynamic var modemType: ModemType = .AFSK1200 {
         didSet {
             changedProperties.insert("modemType")
             dirty = true
         }
     }
     
-    var supprtedModemTypes = Set<ModemType>([.AFSK1200])
+    @objc dynamic var supportedModemTypes = NSMutableArray()
     
     @objc dynamic var canTrackDCD = false
     @objc dynamic var canSquelch = false
@@ -343,6 +310,7 @@ class MobilinkdTncConnection: KissSerialConnection {
     @objc dynamic var canDeviceFirmwareUpdate = false
     @objc dynamic var canPassall = false
     
+    @objc dynamic var canChangeModem = false
     
     /**
      * Set when a property value has changed and needs to be saved
@@ -420,6 +388,7 @@ class MobilinkdTncConnection: KissSerialConnection {
             self.usbPowerOn = false
             self.usbPowerOff = false
             self.passall = false
+            
             self.modemType = .AFSK1200
             
             self.canTrackDCD = false
@@ -436,6 +405,7 @@ class MobilinkdTncConnection: KissSerialConnection {
             self.canAdjustInput = false
             self.canDeviceFirmwareUpdate = false
             self.canPassall = false
+            self.canChangeModem = false
             self.dirty = false
         }
         
@@ -555,11 +525,17 @@ class MobilinkdTncConnection: KissSerialConnection {
             var resetDirty = true
             
             guard let hwCommand = HardwareCommand(rawValue: packet.subcommand!) else {
-                logger.warning("Unknown hardware command \(packet.subcommand!)")
+                
+                let fullPacket = Data([packet.command, packet.subcommand!] + packet.data)
+                logger.warning("Unknown hardware command \(packet.command) \(packet.subcommand ?? 0) : " + fullPacket.hexEncoded)
                 return
             }
             
             switch hwCommand {
+                
+            case .saveToEEPROM:
+                // Ignore
+                return
                 
             case .pollInputLevel:
                 resetDirty = false
@@ -567,7 +543,7 @@ class MobilinkdTncConnection: KissSerialConnection {
                 let vol = log(Float(v)) / log2
                 // Transform it to a value between 0 and 10. Makes it easier to work with NSSlider
                 self.inputLevel = min(10, Int(vol * 1.25 + 0.5))
-                logger.debug("hwPollInputLevel = \(self.inputLevel)")
+                logger.verbose("hwPollInputLevel = \(self.inputLevel)")
                 
             case .getOutputGain:
                 
@@ -664,7 +640,14 @@ class MobilinkdTncConnection: KissSerialConnection {
                 d.second = packet.data[6].decodeBCD()
                 d.timeZone = TimeZone(identifier: "UTC")
                 
-                dateTime = d.date
+                if let date = Calendar.current.date(from: d) {
+                    dateTime = date
+                }
+                
+            case .getErrorMsg:
+                if let error = String(data: packet.data, encoding: .utf8) {
+                    logger.error(error)
+                }
                 
             case .getBluetoothName:
                 resetDirty = false
@@ -685,6 +668,11 @@ class MobilinkdTncConnection: KissSerialConnection {
             case .getPTTChannel:
                 self.pttChannel = packet.value
                 logger.debug("hwGetPTTChannel = \(self.pttChannel)")
+                
+            case .getPassall:
+                self.passall = (packet.value != 0)
+                self.canPassall = true
+                logger.debug("hwGetPassall = \(self.passall)")
                 
             case .getUSBPowerOn:
                 self.usbPowerOn = (packet.value != 0)
@@ -755,19 +743,20 @@ class MobilinkdTncConnection: KissSerialConnection {
                 
                 let rawValue = packet.data[0]
                 guard let extCmd = ExtendedHardwareCommand(rawValue: rawValue) else {
-                    logger.warning("Unknown extende command \(rawValue)")
+                    logger.warning("Unknown extended command \(rawValue)")
                     return
                 }
                 
                 switch extCmd {
                 case .getModemTypes:
+                    canChangeModem = true
                     
-                    self.supprtedModemTypes.removeAll()
+                    supportedModemTypes.removeAllObjects()
                     for modemByte in packet.data.suffix(from: 1) {
                         guard let modem = ModemType(rawValue: modemByte) else {
                             continue
                         }
-                        supprtedModemTypes.insert(modem)
+                        supportedModemTypes.add(modem)
                     }
                     
                 case .getModemType:
@@ -782,7 +771,7 @@ class MobilinkdTncConnection: KissSerialConnection {
             default:
                 resetDirty = false
                 let fullPacket = Data([packet.command, packet.subcommand!] + packet.data)
-                logger.error("Unknown command \(packet)" + fullPacket.hexEncoded)
+                logger.error("Unknown command \(packet.command) \(packet.subcommand ?? 0) : " + fullPacket.hexEncoded)
                 break
             }
             
@@ -962,4 +951,32 @@ class MobilinkdTncConnection: KissSerialConnection {
         try sendExtCommand(cmd: .setModemType, data: data)
     }
     
+}
+
+
+
+@objc enum ModemType: UInt8, CaseIterable, CustomStringConvertible {
+    case AFSK1200 = 1
+    case AFSK300 = 2
+    case FSK9600 = 3
+    case PSK31 = 4
+    case OFDM = 5
+    case MFSK16 = 6
+    
+    var description: String {
+        switch self {
+        case .AFSK1200:
+            return "1200 baud AFSK"
+        case .AFSK300:
+            return "300 baud AFSK"
+        case .FSK9600:
+            return "9600 baud FSK"
+        case .PSK31:
+            return "PSK31"
+        case .OFDM:
+            return "OFDM"
+        case .MFSK16:
+            return "MFSK16"
+        }
+    }
 }

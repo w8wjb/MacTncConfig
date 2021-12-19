@@ -36,6 +36,7 @@
 		ADC3DF7E2495B52D0099CF50 /* AudioOutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF7D2495B52D0099CF50 /* AudioOutputViewController.swift */; };
 		ADC3DF802495B5460099CF50 /* TncInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF7F2495B5460099CF50 /* TncInfoViewController.swift */; };
 		ADC3DF822495B5620099CF50 /* KISSParamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3DF812495B5620099CF50 /* KISSParamsViewController.swift */; };
+		ADDBE3CE276F9C7600009293 /* ToggleFollowsValueButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADDBE3CD276F9C7600009293 /* ToggleFollowsValueButtonCell.swift */; };
 		ADF0DF92249E2D8500052855 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF0DF91249E2D8500052855 /* ByteOrder.swift */; };
 		ADF0DF94249EE9E800052855 /* UIntToBytesConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF0DF93249EE9E800052855 /* UIntToBytesConvertable.swift */; };
 		ADF0DF9624A0D74A00052855 /* SuffixFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF0DF9524A0D74A00052855 /* SuffixFormatter.swift */; };
@@ -96,6 +97,7 @@
 		ADC3DF7D2495B52D0099CF50 /* AudioOutputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioOutputViewController.swift; sourceTree = "<group>"; };
 		ADC3DF7F2495B5460099CF50 /* TncInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TncInfoViewController.swift; sourceTree = "<group>"; };
 		ADC3DF812495B5620099CF50 /* KISSParamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KISSParamsViewController.swift; sourceTree = "<group>"; };
+		ADDBE3CD276F9C7600009293 /* ToggleFollowsValueButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleFollowsValueButtonCell.swift; sourceTree = "<group>"; };
 		ADF0DF91249E2D8500052855 /* ByteOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
 		ADF0DF93249EE9E800052855 /* UIntToBytesConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIntToBytesConvertable.swift; sourceTree = "<group>"; };
 		ADF0DF9524A0D74A00052855 /* SuffixFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixFormatter.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				ADA132A0249BC05D00A8CBED /* PowerSettingsViewController.swift */,
 				ADF0DF9524A0D74A00052855 /* SuffixFormatter.swift */,
 				ADC3DF7F2495B5460099CF50 /* TncInfoViewController.swift */,
+				ADDBE3CD276F9C7600009293 /* ToggleFollowsValueButtonCell.swift */,
 				AD8FA32A249D2AAB0060168F /* UnitFormatter.swift */,
 				ADA132A4249BC0F300A8CBED /* UpdateFirmwareViewController.swift */,
 			);
@@ -316,6 +319,7 @@
 				ADA1328D249B847300A8CBED /* NSDataExt.swift in Sources */,
 				ADA132A1249BC05D00A8CBED /* PowerSettingsViewController.swift in Sources */,
 				ADC3DF5E2495930D0099CF50 /* AppDelegate.swift in Sources */,
+				ADDBE3CE276F9C7600009293 /* ToggleFollowsValueButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +458,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = EX25C7QZ85;
+				DEVELOPMENT_TEAM = R94MW7P6QY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -480,7 +484,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = EX25C7QZ85;
+				DEVELOPMENT_TEAM = R94MW7P6QY;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

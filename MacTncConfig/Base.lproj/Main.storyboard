@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -241,7 +242,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PoH-zy-G7P" userLabel="lblDevice">
-                                <rect key="frame" x="20" y="405" width="50" height="16"/>
+                                <rect key="frame" x="20" y="376" width="50" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Device:" id="MNT-28-SK2">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -249,10 +250,10 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton horizontalHuggingPriority="200" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GHH-Ef-iQr" userLabel="btnSelectDevice">
-                                <rect key="frame" x="74" y="399" width="278" height="25"/>
+                                <rect key="frame" x="73" y="369" width="308" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="6a3-Qq-YRY" id="P4a-HF-llT">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="kEI-m0-9C0">
                                         <items>
                                             <menuItem title="Item 1" state="on" id="6a3-Qq-YRY"/>
@@ -273,20 +274,26 @@
                                 </connections>
                             </popUpButton>
                             <progressIndicator wantsLayer="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="u4J-jL-V05" userLabel="spinConnectProgress">
-                                <rect key="frame" x="357" y="405" width="16" height="16"/>
+                                <rect key="frame" x="385" y="375" width="16" height="16"/>
                             </progressIndicator>
                             <button verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MF4-5f-j1G" userLabel="btnConnect">
-                                <rect key="frame" x="375" y="395" width="113" height="32"/>
-                                <buttonCell key="cell" type="push" title="Connect" alternateTitle="Disconnect" bezelStyle="rounded" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zsV-cA-IBi">
-                                    <behavior key="behavior" lightByContents="YES"/>
+                                <rect key="frame" x="402" y="366" width="103" height="32"/>
+                                <buttonCell key="cell" type="push" title="Connect" alternateTitle="Disconnect" bezelStyle="rounded" imagePosition="leading" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zsV-cA-IBi" customClass="ToggleFollowsValueButtonCell" customModule="Mobilinkd_TNC_Configuration" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="toggleConnect:" target="XfG-lQ-9wD" id="20G-kp-dyj"/>
+                                    <action selector="toggleConnect:" target="XfG-lQ-9wD" id="gFB-yq-TNM"/>
+                                    <binding destination="XfG-lQ-9wD" name="enabled" keyPath="connection.devicePath" id="evB-Et-7ij">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNotNil</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="connection.connected" id="QKc-dT-Mdn"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Esx-Yq-aBf" userLabel="btnSave">
-                                <rect key="frame" x="488" y="395" width="70" height="32"/>
+                                <rect key="frame" x="503" y="366" width="64" height="32"/>
                                 <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jgH-KI-bws">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -301,7 +308,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dIy-w7-NGN" userLabel="btnDiscard">
-                                <rect key="frame" x="558" y="395" width="87" height="32"/>
+                                <rect key="frame" x="565" y="366" width="81" height="32"/>
                                 <buttonCell key="cell" type="push" title="Discard" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cu8-Yc-azG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -312,25 +319,25 @@ DQ
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="ye7-LO-SOj" userLabel="viewDetail">
-                                <rect key="frame" x="228" y="20" width="411" height="374"/>
+                                <rect key="frame" x="228" y="20" width="411" height="345"/>
                                 <connections>
                                     <segue destination="hkr-Nx-kQu" kind="embed" id="Qjb-U1-JAL"/>
                                 </connections>
                             </containerView>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="34" horizontalPageScroll="10" verticalLineScroll="34" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkw-CZ-AbC">
-                                <rect key="frame" x="20" y="20" width="200" height="374"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkw-CZ-AbC">
+                                <rect key="frame" x="20" y="20" width="200" height="345"/>
                                 <clipView key="contentView" id="eDp-yu-vjk">
-                                    <rect key="frame" x="1" y="1" width="198" height="372"/>
+                                    <rect key="frame" x="1" y="1" width="198" height="343"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="32" rowSizeStyle="large" viewBased="YES" id="0oZ-6f-siE" userLabel="tblConfigSections">
-                                            <rect key="frame" x="0.0" y="0.0" width="198" height="372"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="large" viewBased="YES" id="0oZ-6f-siE" userLabel="tblConfigSections">
+                                            <rect key="frame" x="0.0" y="0.0" width="198" height="343"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="195" minWidth="40" maxWidth="1000" id="6D3-hT-bOc">
+                                                <tableColumn width="186" minWidth="40" maxWidth="1000" id="6D3-hT-bOc">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -574,7 +581,7 @@ DQ
                                     </gridCell>
                                     <gridCell row="WZG-wX-OpT" column="c9l-aE-cdy" id="9Cd-mR-f2I">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jwz-K9-qcf" userLabel="lblSerialNumber">
-                                            <rect key="frame" x="21" y="20" width="96" height="16"/>
+                                            <rect key="frame" x="20" y="20" width="97" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Serial Number" id="ODb-wV-p9D">
                                                 <font key="font" metaFont="systemBold"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -601,7 +608,7 @@ DQ
                                     </gridCell>
                                     <gridCell row="kms-C6-81f" column="c9l-aE-cdy" id="wKW-QU-ctn">
                                         <textField key="contentView" toolTip="This is the date/time in UTC read from the TNC's RTC when the connection was established." horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z3I-Ng-B9R" userLabel="lblDateTime">
-                                            <rect key="frame" x="45" y="0.0" width="72" height="16"/>
+                                            <rect key="frame" x="46" y="0.0" width="71" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Date/Time" id="p9N-Iw-SGP">
                                                 <font key="font" metaFont="systemBold"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -673,7 +680,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button toolTip="Input volume attenuation. Select this when a higher volume from the radio produces better results." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cnf-jH-OM9" userLabel="checkAttenuateAudioInput">
-                                <rect key="frame" x="278" y="264" width="154" height="18"/>
+                                <rect key="frame" x="272" y="263" width="158" height="18"/>
                                 <buttonCell key="cell" type="check" title="Attenuate Audio Input" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="IcV-iA-sZ2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -704,7 +711,7 @@ DQ
                                 </connections>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2CV-kh-WFL" userLabel="sliderInputGain">
-                                <rect key="frame" x="18" y="186" width="414" height="24"/>
+                                <rect key="frame" x="18" y="182" width="414" height="28"/>
                                 <string key="toolTip">Select the audio input gain to maximize the dynamic range.  Increase the input gain if the audio levels from the radio are not high enough to acheive the desired levels.  Best results are acheived when the last element in the volume bar above is intermittently lit.</string>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="4" tickMarkPosition="below" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="uLB-w9-7Vk"/>
                                 <connections>
@@ -719,7 +726,7 @@ DQ
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="feJ-Pd-LIg" userLabel="lblInputGainMin">
-                                <rect key="frame" x="18" y="163" width="23" height="14"/>
+                                <rect key="frame" x="18" y="164" width="23" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="min" id="fjw-Mp-I3x">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -735,7 +742,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vUG-Zj-kkb" userLabel="txtInputGain">
-                                <rect key="frame" x="211" y="163" width="29" height="16"/>
+                                <rect key="frame" x="211" y="164" width="29" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="999" id="Km8-PS-LOO">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -751,7 +758,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xYo-86-JVe" userLabel="lblInputGainMax">
-                                <rect key="frame" x="406" y="163" width="26" height="14"/>
+                                <rect key="frame" x="406" y="164" width="26" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="max" id="A6Y-Xf-ZcD">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -767,7 +774,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lMp-Yz-qCq" userLabel="lblInputTwist">
-                                <rect key="frame" x="18" y="139" width="109" height="16"/>
+                                <rect key="frame" x="18" y="140" width="109" height="16"/>
                                 <string key="toolTip">Select the RX twist expected by the receiver.  This is  typically 0dB without de-emphasis and 6dB with de-emphasis.  The normal setting for 1200 baud is 6dB.</string>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Audio Input Twist" id="VBK-6v-CZu">
                                     <font key="font" metaFont="system"/>
@@ -783,7 +790,7 @@ DQ
                                 </connections>
                             </textField>
                             <slider verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HdT-v2-nvP" userLabel="sliderInputTwist">
-                                <rect key="frame" x="18" y="109" width="414" height="24"/>
+                                <rect key="frame" x="18" y="106" width="414" height="28"/>
                                 <string key="toolTip">Select the RX twist expected by the receiver.  This is  typically 0dB without de-emphasis and 6dB with de-emphasis.  The normal setting for 1200 baud is 6dB.</string>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="-3" maxValue="6" doubleValue="6" tickMarkPosition="below" numberOfTickMarks="10" allowsTickMarkValuesOnly="YES" sliderType="linear" id="dsj-kk-znd"/>
                                 <connections>
@@ -798,7 +805,7 @@ DQ
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pHM-g7-317" userLabel="lblInputTwistMin">
-                                <rect key="frame" x="18" y="86" width="23" height="14"/>
+                                <rect key="frame" x="18" y="88" width="23" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="min" id="Wip-SI-xjT">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -814,7 +821,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ehz-qb-lnA" userLabel="txtInputTwist">
-                                <rect key="frame" x="211" y="86" width="29" height="16"/>
+                                <rect key="frame" x="211" y="88" width="29" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="999" id="p1V-Y2-14G">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -830,7 +837,7 @@ DQ
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AWs-S9-ASQ" userLabel="lblInputTwistMax">
-                                <rect key="frame" x="406" y="86" width="26" height="14"/>
+                                <rect key="frame" x="406" y="88" width="26" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="max" id="9SB-PV-sVE">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -846,7 +853,7 @@ DQ
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZCS-Qp-RJJ" userLabel="btnAutoAdjust">
-                                <rect key="frame" x="169" y="50" width="112" height="32"/>
+                                <rect key="frame" x="172" y="53" width="106" height="32"/>
                                 <string key="toolTip">Automatically adjust the input gain and input twist for best results.  Tune the radio to an unused frequency, ensure the squelch is open, and press this button.  The TNC will analyze the channel noise and automatically adjust the input gain and DSP filters to compensate for the receiver's audio response.</string>
                                 <buttonCell key="cell" type="push" title="Auto-adjust" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ckc-lw-zjx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -922,11 +929,11 @@ DQ
             <objects>
                 <viewController id="4QX-EC-9Hn" customClass="AudioOutputViewController" customModule="Mobilinkd_TNC_Configuration" sceneMemberID="viewController">
                     <view key="view" id="ceC-9Y-Oo6">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="324"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Q9-Fk-qVe" userLabel="lblPTTStyle">
-                                <rect key="frame" x="18" y="284" width="63" height="16"/>
+                                <rect key="frame" x="18" y="288" width="63" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="PTT Style" id="Sne-Tz-JME">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -934,7 +941,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ls-dF-Isv" userLabel="segPTTStyle">
-                                <rect key="frame" x="131" y="253" width="188" height="24"/>
+                                <rect key="frame" x="130" y="257" width="190" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="LrF-tJ-lv5">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -956,13 +963,13 @@ MIC signal.</string>
                                 </connections>
                             </segmentedControl>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="750" verticalStackHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZEF-m1-yT7" userLabel="stackOutput">
-                                <rect key="frame" x="20" y="119" width="410" height="128"/>
+                                <rect key="frame" x="20" y="112" width="410" height="138"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="czD-N3-CJt" userLabel="grpOutputGain">
-                                        <rect key="frame" x="0.0" y="65" width="410" height="63"/>
+                                        <rect key="frame" x="0.0" y="70" width="410" height="68"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tPg-qy-C69" userLabel="lblOutputGain">
-                                                <rect key="frame" x="-2" y="47" width="78" height="16"/>
+                                                <rect key="frame" x="-2" y="52" width="78" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Output Gain" id="yzL-gw-YL3">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -970,7 +977,7 @@ MIC signal.</string>
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NcI-2m-nw7" userLabel="sliderOutputGain">
-                                                <rect key="frame" x="-2" y="22" width="414" height="19"/>
+                                                <rect key="frame" x="-2" y="18" width="414" height="28"/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="255" doubleValue="50" tickMarkPosition="below" sliderType="linear" id="KKg-9t-8US"/>
                                                 <connections>
                                                     <binding destination="4QX-EC-9Hn" name="value" keyPath="connection.outputGain" previousBinding="NQL-6k-pJe" id="PeY-Km-8Sf"/>
@@ -1031,10 +1038,10 @@ MIC signal.</string>
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="whQ-vS-hML" userLabel="grpOutputTwist">
-                                        <rect key="frame" x="0.0" y="0.0" width="410" height="57"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="410" height="62"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VHI-hq-NDm" userLabel="lblOutputTwist">
-                                                <rect key="frame" x="-2" y="41" width="82" height="16"/>
+                                                <rect key="frame" x="-2" y="46" width="82" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Output Twist" id="IFS-dM-B55">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1042,7 +1049,7 @@ MIC signal.</string>
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5n9-TB-2JK" userLabel="sliderOutputTwist">
-                                                <rect key="frame" x="-2" y="16" width="414" height="19"/>
+                                                <rect key="frame" x="-2" y="12" width="414" height="28"/>
                                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="25" tickMarkPosition="below" sliderType="linear" id="kPy-3W-Tuu"/>
                                                 <connections>
                                                     <binding destination="4QX-EC-9Hn" name="value" keyPath="connection.outputTwist" previousBinding="9PC-8I-aQa" id="dec-KJ-afy"/>
@@ -1113,7 +1120,7 @@ MIC signal.</string>
                                 </customSpacing>
                             </stackView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gdH-Ql-Ia1" userLabel="lblOutputTone">
-                                <rect key="frame" x="18" y="95" width="80" height="16"/>
+                                <rect key="frame" x="18" y="88" width="80" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Output Tone" id="2wg-V2-FHu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1121,7 +1128,7 @@ MIC signal.</string>
                                 </textFieldCell>
                             </textField>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SVE-If-sBB" userLabel="segRadioTone">
-                                <rect key="frame" x="119" y="64" width="212" height="24"/>
+                                <rect key="frame" x="119" y="58" width="212" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="dHJ-8x-lME">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -1131,7 +1138,7 @@ MIC signal.</string>
                                 </segmentedCell>
                             </segmentedControl>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0Wj-NI-jOE" userLabel="btnTransmit">
-                                <rect key="frame" x="179" y="18" width="93" height="32"/>
+                                <rect key="frame" x="182" y="13" width="87" height="32"/>
                                 <buttonCell key="cell" type="push" title="Transmit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gms-eX-Be0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1271,7 +1278,7 @@ MIC signal.</string>
                                 </connections>
                             </stepper>
                             <button toolTip="Allow transmitting and receiving at the same time.  This should only be enabled when operating on a split frequency." verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e0Y-NM-xlm" userLabel="checkFullDuplex">
-                                <rect key="frame" x="183" y="173" width="89" height="18"/>
+                                <rect key="frame" x="180" y="172" width="93" height="18"/>
                                 <buttonCell key="cell" type="check" title="Full Duplex" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Aq1-RV-tzf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1347,7 +1354,7 @@ MIC signal.</string>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ic0-GL-85I" userLabel="checkPowerOnUSB">
-                                <rect key="frame" x="18" y="192" width="181" height="18"/>
+                                <rect key="frame" x="18" y="191" width="184" height="18"/>
                                 <buttonCell key="cell" type="check" title="Power On with USB Power" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mxg-fC-75r">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1357,7 +1364,7 @@ MIC signal.</string>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zsK-Q4-VwK" userLabel="checkPowerOffUSB">
-                                <rect key="frame" x="18" y="172" width="182" height="18"/>
+                                <rect key="frame" x="18" y="169" width="186" height="18"/>
                                 <buttonCell key="cell" type="check" title="Power Off with USB Power" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oJb-Ye-oYm">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1367,7 +1374,7 @@ MIC signal.</string>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WBh-zq-MuU" userLabel="txtBatteryVoltage">
-                                <rect key="frame" x="374" y="264" width="58" height="16"/>
+                                <rect key="frame" x="375" y="264" width="57" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="1234 mV" id="y6F-x2-mcc">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1423,10 +1430,10 @@ MIC signal.</string>
                                 </textFieldCell>
                             </textField>
                             <popUpButton toolTip="Select the modem type.  1200 baud AFSK is normal for APRS." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GLI-ld-TW6" userLabel="popModemType">
-                                <rect key="frame" x="18" y="232" width="77" height="25"/>
+                                <rect key="frame" x="17" y="232" width="78" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Hzv-OH-WMt" id="pJ3-Gn-RLL">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="dfF-cZ-wz0">
                                         <items>
                                             <menuItem title="Item 1" state="on" id="Hzv-OH-WMt"/>
@@ -1436,11 +1443,13 @@ MIC signal.</string>
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <action selector="onModemTypeChange:" target="5EH-YT-R68" id="UQO-Jo-rbr"/>
+                                    <binding destination="qe4-di-8HE" name="content" keyPath="arrangedObjects" id="Cp0-f1-Mwm"/>
+                                    <binding destination="5EH-YT-R68" name="enabled" keyPath="connection.canChangeModem" id="Obu-jR-a3g"/>
+                                    <binding destination="qe4-di-8HE" name="selectedIndex" keyPath="selectionIndex" previousBinding="Cp0-f1-Mwm" id="mGW-OT-Vgq"/>
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="41J-wP-K9A" userLabel="checkDCD">
-                                <rect key="frame" x="18" y="211" width="200" height="18"/>
+                                <rect key="frame" x="18" y="211" width="204" height="18"/>
                                 <buttonCell key="cell" type="check" title="Data Carrier Detection (DCD)" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Y2r-mn-7eS">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1451,7 +1460,7 @@ MIC signal.</string>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="egM-fq-fw3" userLabel="checkConnectionTracking">
-                                <rect key="frame" x="18" y="191" width="147" height="18"/>
+                                <rect key="frame" x="18" y="189" width="151" height="18"/>
                                 <buttonCell key="cell" type="check" title="Connection Tracking" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="spz-st-AQs">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1462,7 +1471,7 @@ MIC signal.</string>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cRC-oU-snt" userLabel="checkVerboseOutput">
-                                <rect key="frame" x="18" y="171" width="118" height="18"/>
+                                <rect key="frame" x="18" y="167" width="122" height="18"/>
                                 <buttonCell key="cell" type="check" title="Verbose Output" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="jI6-4b-0Kc">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1473,7 +1482,7 @@ MIC signal.</string>
                                 </connections>
                             </button>
                             <button toolTip="Pass packets with an invalid CRC.  This is normally off." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rGr-3H-BHN" userLabel="checkPassall">
-                                <rect key="frame" x="18" y="151" width="64" height="18"/>
+                                <rect key="frame" x="18" y="145" width="68" height="18"/>
                                 <buttonCell key="cell" type="check" title="Passall" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tKJ-d2-ibY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1507,10 +1516,16 @@ MIC signal.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="modemTypeArrayController" destination="qe4-di-8HE" id="hyj-cl-7dc"/>
                         <outlet property="popModemType" destination="GLI-ld-TW6" id="23j-8Y-yPg"/>
                     </connections>
                 </viewController>
                 <customObject id="chO-jk-r4I" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" automaticallyRearrangesObjects="YES" id="qe4-di-8HE" userLabel="modemTypeArrayController">
+                    <connections>
+                        <binding destination="5EH-YT-R68" name="contentArray" keyPath="connection.supportedModemTypes" id="a1t-oz-kIg"/>
+                    </connections>
+                </arrayController>
             </objects>
             <point key="canvasLocation" x="-704" y="1794"/>
         </scene>
@@ -1523,7 +1538,7 @@ MIC signal.</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zy1-aK-kgK" userLabel="txtFirmwareFile">
-                                <rect key="frame" x="20" y="235" width="329" height="21"/>
+                                <rect key="frame" x="20" y="235" width="337" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Jzm-jA-ygQ">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1534,7 +1549,7 @@ MIC signal.</string>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="adC-8n-vdg" userLabel="btnBrowse">
-                                <rect key="frame" x="351" y="228" width="85" height="32"/>
+                                <rect key="frame" x="358" y="229" width="79" height="32"/>
                                 <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qvX-L1-tvO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1544,7 +1559,7 @@ MIC signal.</string>
                                 </connections>
                             </button>
                             <button toolTip="Upload the firmware to the TNC." verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WrS-O0-tkn" userLabel="btnUpdateFirmware">
-                                <rect key="frame" x="181" y="161" width="89" height="32"/>
+                                <rect key="frame" x="184" y="162" width="83" height="32"/>
                                 <buttonCell key="cell" type="push" title="Execute" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Mi-dE-wfF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

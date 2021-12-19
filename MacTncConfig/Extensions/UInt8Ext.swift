@@ -11,7 +11,7 @@ import Foundation
 extension UInt8 {
     
     func decodeBCD() -> Int {
-        return Int(((Double(self) / 16) * 10) + Double(self & 0x0F))
+        return Int(((self / 16) * 10) + (self & 0x0F))
     }
     
 }

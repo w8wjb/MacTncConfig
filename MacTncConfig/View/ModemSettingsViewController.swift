@@ -11,8 +11,21 @@ import Cocoa
 class ModemSettingsViewController: NSViewController {
 
     @IBOutlet weak var popModemType: NSPopUpButton!
-
-    @objc dynamic weak var connection: MobilinkdTncConnection!
+    @IBOutlet var modemTypeArrayController: NSArrayController!
+    
+    @objc dynamic var connection: MobilinkdTncConnection? {
+        willSet {
+            if let conn = self.connection {
+                conn.removeObserver(self, forKeyPath: "modemType")
+            }
+        }
+        
+        didSet {
+            if let conn = self.connection {
+                conn.addObserver(self, forKeyPath: "modemType", options: [.initial, .new], context: nil)
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,30 +34,47 @@ class ModemSettingsViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for (i, type) in MobilinkdTncConnection.ModemType.allCases.enumerated() {
-            popModemType.addItem(withTitle: type.description)
-            if type == connection.modemType {
-                popModemType.selectItem(at: i)
-            }
-        }
-        
+        modemTypeArrayController.addObserver(self, forKeyPath: "selectedObjects", options: [.new], context: nil)
+    }
+    
+    deinit {
+        modemTypeArrayController.removeObserver(self, forKeyPath: "selectedObjects")
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        popModemType.removeAllItems()
-        popModemType.addItem(withTitle: MobilinkdTncConnection.ModemType.AFSK1200.description)
-        popModemType.isEnabled = false
-
-        if connection.apiVersion > TNC_API1_0 {
-            try? connection.requestModemType()
-            try? connection.requestModemTypes()
+        if let conn = self.connection {
+            if conn.apiVersion > TNC_API1_0 {
+                try? conn.requestModemType()
+                try? conn.requestModemTypes()
+            }
         }
     }
     
-    @IBAction func onModemTypeChange(_ sender: NSPopUpButton) {
-        connection.modemType = MobilinkdTncConnection.ModemType.allCases[sender.indexOfSelectedItem]        
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if let arrayController = object as? NSArrayController  {
+            if keyPath == "selectedObjects" {
+                if arrayController == modemTypeArrayController {
+                    onModemTypeDidChange()
+                }
+            }
+        }
+        
+        if let conn = object as? MobilinkdTncConnection {
+            modemTypeArrayController.setSelectedObjects([conn.modemType])
+        }
+        
     }
+    
+    func onModemTypeDidChange() {
+        if let selectedModem = modemTypeArrayController.selectedObjects.first as? ModemType {
+            if connection?.modemType != selectedModem {
+                connection?.modemType = selectedModem
+            }
+        }
+    }
+
 }
